@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://jboss.org/schema/arquillian"
+	xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+	<container qualifier="tomee" default="true">
+		<configuration>
+			<property name="dir">target/apache-tomee-remote</property>
+			<property name="appWorkingDir">target/arquillian-test-working-dir</property>
+			<property name="properties">
+				PetCatalog = new://Resource?type=DataSource
+				PetCatalog.JdbcUrl jdbc:hsqldb:mem:petcat
+				PetCatalog.JdbcDriver org.hsqldb.jdbc.JDBCDriver
+				PetCatalog.UserName sa
+				PetCatalog.Password
+				PetCatalog.JtaManaged true
+			</property>
+		</configuration>
+	</container>
+	<extension qualifier="persistence">
+		<property name="defaultDataSource">jdbc/petcatalog</property>
+	</extension>
+</arquillian>
